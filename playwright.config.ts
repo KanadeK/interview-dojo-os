@@ -15,10 +15,14 @@ export default defineConfig({
       name: "chromium",
       use: {
         ...devices["Desktop Chrome"],
-        executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        launchOptions: {
-          executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-        },
+        ...(process.platform === "win32"
+          ? {
+              executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+              launchOptions: {
+                executablePath: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
+              },
+            }
+          : {}),
       },
     },
   ],
