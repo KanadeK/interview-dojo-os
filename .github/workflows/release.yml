@@ -16,8 +16,9 @@ jobs:
       - run: npm ci
       - run: npx playwright install --with-deps chromium
       - run: npm run verify
+      - run: npm run demo
       - run: npm run package
-      - run: find dist-release -maxdepth 1 -type f -print0 | sort -z | xargs -0 sha256sum > dist-release/SHA256SUMS.txt
+      - run: find dist-release -maxdepth 1 -type f ! -name SHA256SUMS.txt -print0 | sort -z | xargs -0 sha256sum > dist-release/SHA256SUMS.txt
       - uses: softprops/action-gh-release@v2
         with:
           files: dist-release/*
