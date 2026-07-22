@@ -1,0 +1,49 @@
+{
+  "name": "interview-dojo-os",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Local-first technical interview practice with replayable sessions and transparent rubrics.",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "eslint . --max-warnings=0",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "test:coverage": "vitest run --coverage",
+    "test:e2e": "playwright test",
+    "format:check": "prettier --check .",
+    "verify": "npm run format:check && npm run lint && npm run typecheck && npm run test:coverage && npm run test:e2e && npm run build",
+    "demo": "tsx scripts/demo.ts",
+    "package": "tsx scripts/package-release.ts",
+    "release-check": "tsx scripts/release-check.ts"
+  },
+  "dependencies": {
+    "@monaco-editor/react": "4.7.0",
+    "better-sqlite3": "12.8.0",
+    "drizzle-orm": "0.45.1",
+    "next": "16.1.6",
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "zod": "4.3.6"
+  },
+  "devDependencies": {
+    "@eslint/js": "9.39.1",
+    "@playwright/test": "1.57.0",
+    "@types/better-sqlite3": "7.6.13",
+    "@types/node": "24.10.1",
+    "@types/react": "19.2.7",
+    "@types/react-dom": "19.2.3",
+    "@vitest/coverage-v8": "4.0.15",
+    "eslint": "9.39.1",
+    "eslint-config-next": "16.1.6",
+    "prettier": "3.7.4",
+    "tsx": "4.21.0",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.47.0",
+    "vitest": "4.0.15"
+  },
+  "engines": {
+    "node": ">=20.9.0"
+  }
+}
