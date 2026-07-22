@@ -13,13 +13,15 @@ if (!readFileSync("CHANGELOG.md", "utf8").includes("v0.1.0")) fail("CHANGELOG is
 if (!existsSync("dist-release/SHA256SUMS.txt")) fail("Release checksums are missing");
 if (!readdirSync("dist-release").some((name) => name.startsWith("interview-dojo-os-0.1.0")))
   fail("Release package is missing");
-const forbidden = run("git", [
-  "grep",
-  "-nE",
-  "TODO|FIXME|NotImplemented|placeholder|coming soon|lorem ipsum",
-  "--",
-  ":!docs/ROADMAP.md",
-]).trim();
+const marker = ["TO" + "DO", "FIX" + "ME", "Not" + "Implemented", "place" + "holder", "coming soon", "lorem ipsum"].join("|");
+let forbidden = "";
+try {
+  forbidden = run("git", ["grep", "-nE", marker, "--", ":!docs/ROADMAP.md", ":!scripts/release-check.ts"]).trim();
+} catch (error) {
+  const result = error as { status?: number; stdout?: string };
+  if (result.status !== 1) throw error;
+  forbidden = result.stdout?.trim() ?? "";
+}
 if (forbidden) fail(`Forbidden marker found:\n${forbidden}`);
 const authors = run("git", ["log", "--format=%an <%ae>"]).trim().split("\n").filter(Boolean);
 if (

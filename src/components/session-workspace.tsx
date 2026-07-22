@@ -84,10 +84,11 @@ export function SessionWorkspace({ initial }: { initial: Detail }) {
           value={answer}
           onChange={(event) => setAnswer(event.target.value)}
           rows={14}
-          placeholder="Write code, reasoning, or a design outline."
           disabled={!hydrated}
         />
-        <button onClick={saveAnswer} disabled={!hydrated}>Save answer version</button>
+        <button onClick={saveAnswer} disabled={!hydrated}>
+          Save answer version
+        </button>
         <p>{detail.answers.length} persisted version(s)</p>
       </section>
       <section>

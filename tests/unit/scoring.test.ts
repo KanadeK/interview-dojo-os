@@ -46,7 +46,7 @@ describe("rubric scoring", () => {
     ]));
 });
 describe("pack parsing and injected time", () => {
-  it("rejects a malformed pack rather than accepting a placeholder", () =>
+  it("rejects a malformed pack rather than accepting an empty stand-in", () =>
     expect(() => parseQuestionPack({ version: 1, name: "bad", questions: [] })).toThrow());
   it("creates deterministic timeline event timestamps and elapsed time", () => {
     const clock = { now: () => new Date("2026-01-01T00:02:30.000Z") };

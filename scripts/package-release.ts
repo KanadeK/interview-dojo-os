@@ -17,8 +17,11 @@ async function zip(output: string, add: (archive: archiver.Archiver) => void) {
     stream.on("close", resolve); archive.on("error", reject); archive.pipe(stream); add(archive); void archive.finalize();
   });
 }
-await zip(questionPack, (archive) => archive.file("examples/original-question-pack.json", { name: "original-question-pack.json" }));
-await zip(appArchive, (archive) => archive.directory(packageDir, `interview-dojo-os-${version}-node`));
-const files = readdirSync(root).filter((name) => name !== "SHA256SUMS.txt" && statSync(join(root, name)).isFile());
-writeFileSync(join(root, "SHA256SUMS.txt"), files.map((name) => `${createHash("sha256").update(readFileSync(join(root, name))).digest("hex")}  ${name}`).join("\n") + "\n");
-console.log(`Packaged ${appArchive} and ${questionPack}`);
+async function main() {
+  await zip(questionPack, (archive) => archive.file("examples/original-question-pack.json", { name: "original-question-pack.json" }));
+  await zip(appArchive, (archive) => archive.directory(packageDir, `interview-dojo-os-${version}-node`));
+  const files = readdirSync(root).filter((name) => name !== "SHA256SUMS.txt" && statSync(join(root, name)).isFile());
+  writeFileSync(join(root, "SHA256SUMS.txt"), files.map((name) => `${createHash("sha256").update(readFileSync(join(root, name))).digest("hex")}  ${name}`).join("\n") + "\n");
+  console.log(`Packaged ${appArchive} and ${questionPack}`);
+}
+void main();
