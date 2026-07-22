@@ -1,0 +1,546 @@
+{
+  "version": 1,
+  "name": "Original Offline Dojo Pack",
+  "questions": [
+    {
+      "id": "two-sum-stream",
+      "title": "Streaming pair detector",
+      "kind": "algorithm",
+      "prompt": "Design a stream processor that reports whether each incoming integer completes a pair summing to a target. Explain memory trade-offs and write the core algorithm.",
+      "topics": ["hash maps", "streaming"],
+      "rubric": [
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 3,
+          "guidance": "Explains the complement invariant and duplicate handling."
+        },
+        {
+          "id": "complexity",
+          "label": "Complexity",
+          "weight": 2,
+          "guidance": "States time and memory costs."
+        },
+        {
+          "id": "communication",
+          "label": "Communication",
+          "weight": 1,
+          "guidance": "Uses a clear example."
+        }
+      ]
+    },
+    {
+      "id": "interval-merge",
+      "title": "Calendar interval merge",
+      "kind": "algorithm",
+      "prompt": "Merge booking intervals, then explain how you would detect the first overlap when inserts arrive one at a time.",
+      "topics": ["sorting", "intervals"],
+      "rubric": [
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 3,
+          "guidance": "Covers touching endpoints and ordering."
+        },
+        {
+          "id": "complexity",
+          "label": "Complexity",
+          "weight": 2,
+          "guidance": "Justifies sort and scan cost."
+        },
+        {
+          "id": "edge-cases",
+          "label": "Edge cases",
+          "weight": 1,
+          "guidance": "Discusses empty and nested intervals."
+        }
+      ]
+    },
+    {
+      "id": "lru-cache",
+      "title": "Bounded LRU cache",
+      "kind": "algorithm",
+      "prompt": "Implement the operations and invariants of an LRU cache with O(1) get and put, including eviction at capacity.",
+      "topics": ["data structures", "caching"],
+      "rubric": [
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 3,
+          "guidance": "Maintains map/list consistency."
+        },
+        {
+          "id": "complexity",
+          "label": "Complexity",
+          "weight": 2,
+          "guidance": "Explains constant-time operations."
+        },
+        {
+          "id": "testing",
+          "label": "Testing",
+          "weight": 1,
+          "guidance": "Names update and eviction cases."
+        }
+      ]
+    },
+    {
+      "id": "binary-search-boundary",
+      "title": "First true boundary",
+      "kind": "algorithm",
+      "prompt": "Given a monotonic predicate over a sorted domain, return the first value for which it is true. Discuss termination and no-match behavior.",
+      "topics": ["binary search", "invariants"],
+      "rubric": [
+        {
+          "id": "invariant",
+          "label": "Invariant",
+          "weight": 3,
+          "guidance": "States a searchable interval invariant."
+        },
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 2,
+          "guidance": "Avoids infinite loops."
+        },
+        {
+          "id": "edge-cases",
+          "label": "Edge cases",
+          "weight": 1,
+          "guidance": "Handles all false and all true."
+        }
+      ]
+    },
+    {
+      "id": "rate-limiter",
+      "title": "Token bucket limiter",
+      "kind": "algorithm",
+      "prompt": "Model a token-bucket rate limiter for a single API key. Describe refill, burst behavior and clock-skew handling.",
+      "topics": ["rate limiting", "time"],
+      "rubric": [
+        {
+          "id": "modeling",
+          "label": "Modeling",
+          "weight": 3,
+          "guidance": "Defines token and timestamp state."
+        },
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 2,
+          "guidance": "Prevents negative token balances."
+        },
+        {
+          "id": "operations",
+          "label": "Operations",
+          "weight": 1,
+          "guidance": "Mentions persistence or distribution."
+        }
+      ]
+    },
+    {
+      "id": "null-parser",
+      "title": "Parser returns null in production",
+      "kind": "debugging",
+      "prompt": "A JSON configuration parser succeeds in tests but returns null after deployment. Lay out a bounded investigation and the smallest safe fix.",
+      "topics": ["debugging", "configuration"],
+      "rubric": [
+        {
+          "id": "hypothesis",
+          "label": "Hypothesis quality",
+          "weight": 2,
+          "guidance": "Separates file, environment and parsing causes."
+        },
+        {
+          "id": "evidence",
+          "label": "Evidence",
+          "weight": 3,
+          "guidance": "Proposes observable checks before changing code."
+        },
+        {
+          "id": "safety",
+          "label": "Safety",
+          "weight": 1,
+          "guidance": "Avoids exposing configuration secrets."
+        }
+      ]
+    },
+    {
+      "id": "duplicate-jobs",
+      "title": "Duplicate background jobs",
+      "kind": "debugging",
+      "prompt": "A worker processes some jobs twice after retries. Explain how you would identify the duplication point and make the operation safe.",
+      "topics": ["debugging", "idempotency"],
+      "rubric": [
+        {
+          "id": "diagnosis",
+          "label": "Diagnosis",
+          "weight": 3,
+          "guidance": "Uses job and attempt identifiers."
+        },
+        {
+          "id": "design",
+          "label": "Design",
+          "weight": 2,
+          "guidance": "Defines an idempotency boundary."
+        },
+        {
+          "id": "regression",
+          "label": "Regression test",
+          "weight": 1,
+          "guidance": "Covers retry behavior."
+        }
+      ]
+    },
+    {
+      "id": "slow-query",
+      "title": "Slow customer lookup",
+      "kind": "debugging",
+      "prompt": "A customer lookup grows from 30 ms to 3 s with data volume. Describe the data you collect, likely causes and a rollback-aware remedy.",
+      "topics": ["debugging", "databases"],
+      "rubric": [
+        {
+          "id": "measurement",
+          "label": "Measurement",
+          "weight": 3,
+          "guidance": "Uses query plan and cardinality evidence."
+        },
+        {
+          "id": "solution",
+          "label": "Solution",
+          "weight": 2,
+          "guidance": "Matches index or query change to evidence."
+        },
+        {
+          "id": "risk",
+          "label": "Risk",
+          "weight": 1,
+          "guidance": "Includes migration and rollback."
+        }
+      ]
+    },
+    {
+      "id": "timezone-reminder",
+      "title": "Reminder fires at wrong hour",
+      "kind": "debugging",
+      "prompt": "Users in two regions receive a scheduled reminder one hour early after a clock change. Trace the likely boundaries and propose a testable correction.",
+      "topics": ["debugging", "time zones"],
+      "rubric": [
+        {
+          "id": "root-cause",
+          "label": "Root cause",
+          "weight": 3,
+          "guidance": "Distinguishes instant, local time and timezone."
+        },
+        {
+          "id": "testability",
+          "label": "Testability",
+          "weight": 2,
+          "guidance": "Uses fixed clocks and boundary dates."
+        },
+        {
+          "id": "communication",
+          "label": "Communication",
+          "weight": 1,
+          "guidance": "Explains impact clearly."
+        }
+      ]
+    },
+    {
+      "id": "missing-metric",
+      "title": "Missing deployment metric",
+      "kind": "debugging",
+      "prompt": "A deployment completed, but its dashboard series disappeared. Form an investigation that distinguishes ingestion, labels, query range and permissions.",
+      "topics": ["debugging", "observability"],
+      "rubric": [
+        {
+          "id": "systematic",
+          "label": "Systematic process",
+          "weight": 3,
+          "guidance": "Checks the pipeline in order."
+        },
+        {
+          "id": "observability",
+          "label": "Observability",
+          "weight": 2,
+          "guidance": "Uses identifiers and timestamps."
+        },
+        {
+          "id": "safety",
+          "label": "Safety",
+          "weight": 1,
+          "guidance": "Avoids destructive dashboard edits."
+        }
+      ]
+    },
+    {
+      "id": "idempotent-orders-api",
+      "title": "Idempotent order creation API",
+      "kind": "api-design",
+      "prompt": "Design POST /orders so a mobile client can retry safely after a timeout. Specify request fields, response semantics and persistence constraints.",
+      "topics": ["API design", "idempotency"],
+      "rubric": [
+        {
+          "id": "contract",
+          "label": "Contract",
+          "weight": 3,
+          "guidance": "Defines idempotency key behavior and statuses."
+        },
+        {
+          "id": "data",
+          "label": "Data integrity",
+          "weight": 2,
+          "guidance": "Preserves request-result mapping."
+        },
+        {
+          "id": "errors",
+          "label": "Errors",
+          "weight": 1,
+          "guidance": "Separates validation and retryable failure."
+        }
+      ]
+    },
+    {
+      "id": "pagination-contract",
+      "title": "Stable activity pagination",
+      "kind": "api-design",
+      "prompt": "Design an activity-feed endpoint that supports pagination while new activity arrives. Explain cursor contents and ordering guarantees.",
+      "topics": ["API design", "pagination"],
+      "rubric": [
+        {
+          "id": "contract",
+          "label": "Contract",
+          "weight": 3,
+          "guidance": "Specifies cursor and ordering."
+        },
+        {
+          "id": "consistency",
+          "label": "Consistency",
+          "weight": 2,
+          "guidance": "Explains duplicate and missing-item trade-offs."
+        },
+        {
+          "id": "security",
+          "label": "Security",
+          "weight": 1,
+          "guidance": "Treats cursors as opaque."
+        }
+      ]
+    },
+    {
+      "id": "webhook-signature",
+      "title": "Signed webhook receiver",
+      "kind": "api-design",
+      "prompt": "Design a webhook receiver for a partner that retries deliveries. Cover verification, replay protection and acknowledgment behavior.",
+      "topics": ["API design", "security"],
+      "rubric": [
+        {
+          "id": "security",
+          "label": "Security",
+          "weight": 3,
+          "guidance": "Verifies raw payload signature and timestamp."
+        },
+        {
+          "id": "reliability",
+          "label": "Reliability",
+          "weight": 2,
+          "guidance": "Uses durable enqueue and idempotency."
+        },
+        {
+          "id": "operations",
+          "label": "Operations",
+          "weight": 1,
+          "guidance": "Makes failures traceable."
+        }
+      ]
+    },
+    {
+      "id": "file-upload-api",
+      "title": "Resumable file upload",
+      "kind": "api-design",
+      "prompt": "Sketch an API for uploading a large file from unreliable networks. State how the client resumes, finalizes and learns validation results.",
+      "topics": ["API design", "storage"],
+      "rubric": [
+        {
+          "id": "protocol",
+          "label": "Protocol",
+          "weight": 3,
+          "guidance": "Defines upload state and chunk identity."
+        },
+        {
+          "id": "validation",
+          "label": "Validation",
+          "weight": 2,
+          "guidance": "Checks size and content safely."
+        },
+        {
+          "id": "usability",
+          "label": "Usability",
+          "weight": 1,
+          "guidance": "Provides actionable error responses."
+        }
+      ]
+    },
+    {
+      "id": "permission-model",
+      "title": "Project permission API",
+      "kind": "api-design",
+      "prompt": "Design APIs for project membership with owner, editor and viewer roles. Cover authorization checks and auditability.",
+      "topics": ["API design", "authorization"],
+      "rubric": [
+        {
+          "id": "authorization",
+          "label": "Authorization",
+          "weight": 3,
+          "guidance": "Enforces role checks server-side."
+        },
+        {
+          "id": "audit",
+          "label": "Auditability",
+          "weight": 2,
+          "guidance": "Records actor and change."
+        },
+        {
+          "id": "edge-cases",
+          "label": "Edge cases",
+          "weight": 1,
+          "guidance": "Handles last-owner removal."
+        }
+      ]
+    },
+    {
+      "id": "chat-system",
+      "title": "Small team chat",
+      "kind": "system-design",
+      "prompt": "Design a chat service for small teams with message history and read markers. Identify components, data model and the first scaling boundary.",
+      "topics": ["system design", "messaging"],
+      "rubric": [
+        {
+          "id": "architecture",
+          "label": "Architecture",
+          "weight": 3,
+          "guidance": "Connects client, API, storage and delivery."
+        },
+        {
+          "id": "tradeoffs",
+          "label": "Trade-offs",
+          "weight": 2,
+          "guidance": "Names consistency choices."
+        },
+        {
+          "id": "scaling",
+          "label": "Scaling",
+          "weight": 1,
+          "guidance": "Identifies a measurable bottleneck."
+        }
+      ]
+    },
+    {
+      "id": "image-processing",
+      "title": "Image processing pipeline",
+      "kind": "system-design",
+      "prompt": "Design a service that accepts images, creates thumbnails and exposes progress to a user. Address durability and failed processing.",
+      "topics": ["system design", "queues"],
+      "rubric": [
+        {
+          "id": "architecture",
+          "label": "Architecture",
+          "weight": 3,
+          "guidance": "Separates upload, queue and worker."
+        },
+        {
+          "id": "reliability",
+          "label": "Reliability",
+          "weight": 2,
+          "guidance": "Handles retry and poison jobs."
+        },
+        {
+          "id": "privacy",
+          "label": "Privacy",
+          "weight": 1,
+          "guidance": "Defines retention and access controls."
+        }
+      ]
+    },
+    {
+      "id": "feature-flags",
+      "title": "Feature flag delivery",
+      "kind": "system-design",
+      "prompt": "Design a feature flag system used by web applications. Explain evaluation, caching, targeting and safe rollback.",
+      "topics": ["system design", "configuration"],
+      "rubric": [
+        {
+          "id": "architecture",
+          "label": "Architecture",
+          "weight": 3,
+          "guidance": "Explains control and data planes."
+        },
+        {
+          "id": "correctness",
+          "label": "Correctness",
+          "weight": 2,
+          "guidance": "Defines deterministic targeting."
+        },
+        {
+          "id": "operations",
+          "label": "Operations",
+          "weight": 1,
+          "guidance": "Makes rollback fast and observable."
+        }
+      ]
+    },
+    {
+      "id": "log-analytics",
+      "title": "Log analytics for a product team",
+      "kind": "system-design",
+      "prompt": "Design a log analytics path for a product team that needs search, retention and bounded cost. State the data lifecycle.",
+      "topics": ["system design", "observability"],
+      "rubric": [
+        {
+          "id": "data-flow",
+          "label": "Data flow",
+          "weight": 3,
+          "guidance": "Follows data from collection to query."
+        },
+        {
+          "id": "cost",
+          "label": "Cost control",
+          "weight": 2,
+          "guidance": "Uses sampling or tiered retention."
+        },
+        {
+          "id": "security",
+          "label": "Security",
+          "weight": 1,
+          "guidance": "Protects sensitive fields."
+        }
+      ]
+    },
+    {
+      "id": "notification-service",
+      "title": "Multi-channel notifications",
+      "kind": "system-design",
+      "prompt": "Design a notification service for email and push that respects user preferences and prevents duplicate sends.",
+      "topics": ["system design", "idempotency"],
+      "rubric": [
+        {
+          "id": "architecture",
+          "label": "Architecture",
+          "weight": 3,
+          "guidance": "Separates preferences, delivery and providers."
+        },
+        {
+          "id": "reliability",
+          "label": "Reliability",
+          "weight": 2,
+          "guidance": "Explains deduplication and retries."
+        },
+        {
+          "id": "privacy",
+          "label": "Privacy",
+          "weight": 1,
+          "guidance": "Minimizes stored contact data."
+        }
+      ]
+    }
+  ]
+}
