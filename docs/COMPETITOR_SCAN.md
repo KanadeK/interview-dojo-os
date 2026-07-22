@@ -1,0 +1,20 @@
+# Competitor Scan
+
+Scan date: 2026-07-22. Method: `gh search repos` for exact name, exact slug, `coding interview practice`, `technical interview preparation`, and `interview rubric`; metadata was inspected with `gh api repos`.
+
+Exact-name and exact-slug searches returned no public repository. The table is an intentionally small public-repository sample, not a claim of a complete market census.
+
+| Repository                                                                                                      | Stars | Updated (UTC) | Observed focus                                       | Overlap / distinction                                                 |
+| --------------------------------------------------------------------------------------------------------------- | ----: | ------------- | ---------------------------------------------------- | --------------------------------------------------------------------- |
+| [junfanz1/Software-Engineer-Coding-Interviews](https://github.com/junfanz1/Software-Engineer-Coding-Interviews) |   946 | 2026-07-21    | DSA, ML, system-design and DevOps practice resources | Study material; no observed local session replay workflow.            |
+| [kfurfles/go-interview-preparation](https://github.com/kfurfles/go-interview-preparation)                       |    78 | 2026-07-14    | Go fundamentals and DSA guide                        | Language-specific study guide.                                        |
+| [ani03sha/Technical-Interview-Preparation](https://github.com/ani03sha/Technical-Interview-Preparation)         |    43 | 2026-06-19    | Questions and answers                                | Content collection, not durable practice records.                     |
+| [marttp/java-tech-interviews-prep](https://github.com/marttp/java-tech-interviews-prep)                         |    36 | 2026-06-28    | Java interview preparation                           | Language-specific source examples.                                    |
+| [thil4n/interview-preparation](https://github.com/thil4n/interview-preparation)                                 |    30 | 2026-07-21    | Multi-domain interview preparation                   | Study materials rather than local replay.                             |
+| [Ricky-Stevens/eng-rubrics](https://github.com/Ricky-Stevens/eng-rubrics)                                       |     1 | 2026-03-12    | Hiring rubrics for engineering leaders               | Employer-facing rubric material; Dojo is learner self-assessment.     |
+| [FleetingEcho/system-design](https://github.com/FleetingEcho/system-design)                                     |     1 | 2026-06-17    | System-design guide and rubrics                      | Guide/templates; Dojo adds versioned local sessions.                  |
+| [Raj-Avvaru-25/mock-system-design-interviewer](https://github.com/Raj-Avvaru-25/mock-system-design-interviewer) |     0 | 2026-06-15    | Real-time AI mock interviewer                        | Cloud/model-oriented; Dojo is offline and manual.                     |
+| [robynsyngh/ai-interview-copilot](https://github.com/robynsyngh/ai-interview-copilot)                           |     0 | 2026-06-25    | AI meeting/audio co-pilot dashboard                  | Captures audio and uses hosted services; out of Dojo's privacy scope. |
+| [KingsSchoolEdge/InterviewRubricApp](https://github.com/KingsSchoolEdge/InterviewRubricApp)                     |     0 | 2025-07-10    | JavaScript rubric app                                | Rubric adjacency; no observed versioned local answer export.          |
+
+Decision: retain the name `Interview Dojo OS`. No active same-name/same-slug project was found. The closest overlaps are below 70% because this MVP combines an offline question-pack library, SQLite session persistence, answer-version timeline, transparent manual rubric, trend calculation and default-redacted report export. It does not copy any competitor's implementation or claims. README wording is limited to: “公开仓库抽样检索未发现同名且高度同构的活跃项目”.
