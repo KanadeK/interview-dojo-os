@@ -19,15 +19,13 @@ export function SessionWorkspace({ initial }: { initial: Detail }) {
     () => true,
     () => false,
   );
-  const [seconds, setSeconds] = useState(() =>
-    Math.floor((Date.now() - new Date(initial.session.startedAt).getTime()) / 1000),
-  );
+  // Keep the server and first client render identical; wall-clock time begins after hydration.
+  const [seconds, setSeconds] = useState(0);
   useEffect(() => {
-    const timer = window.setInterval(
-      () =>
-        setSeconds(Math.floor((Date.now() - new Date(detail.session.startedAt).getTime()) / 1000)),
-      1000,
-    );
+    const updateElapsed = () =>
+      setSeconds(Math.floor((Date.now() - new Date(detail.session.startedAt).getTime()) / 1000));
+    updateElapsed();
+    const timer = window.setInterval(updateElapsed, 1000);
     return () => window.clearInterval(timer);
   }, [detail.session.startedAt]);
   const refresh = async () => {
