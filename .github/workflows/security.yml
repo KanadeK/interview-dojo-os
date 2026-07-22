@@ -18,4 +18,4 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm audit --omit=dev --audit-level=high
-      - run: "! git grep -nEi '(ghp_|github_pat_|aws_secret_access_key|private_key)'"
+      - run: "! git grep -nEi '(ghp_|github_pat_|aws_secret_access_key|private_key)' -- ':!.github/workflows/security.yml'"
