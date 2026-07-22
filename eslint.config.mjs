@@ -6,6 +6,6 @@ const config = [
   ...next,
   js.configs.recommended,
   ...tseslint.configs.recommended,
-  { ignores: [".next/**", "coverage/**", "dist-release/**", "playwright-report/**"] },
+  { ignores: [".next/**", ".tmp/**", "coverage/**", "dist-release/**", "playwright-report/**"] },
 ];
 export default config;

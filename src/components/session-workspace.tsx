@@ -1,5 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import type { Question, RubricScore } from "@/domain/model";
 
@@ -14,12 +14,15 @@ export function SessionWorkspace({ initial }: { initial: Detail }) {
   const [detail, setDetail] = useState(initial);
   const [answer, setAnswer] = useState(initial.answers.at(-1)?.content ?? "");
   const [notice, setNotice] = useState("");
-  const [hydrated, setHydrated] = useState(false);
+  const hydrated = useSyncExternalStore(
+    () => () => undefined,
+    () => true,
+    () => false,
+  );
   const [seconds, setSeconds] = useState(() =>
     Math.floor((Date.now() - new Date(initial.session.startedAt).getTime()) / 1000),
   );
   useEffect(() => {
-    setHydrated(true);
     const timer = window.setInterval(
       () =>
         setSeconds(Math.floor((Date.now() - new Date(detail.session.startedAt).getTime()) / 1000)),
@@ -151,7 +154,7 @@ export function SessionWorkspace({ initial }: { initial: Detail }) {
         <ol>
           {detail.timeline.map((event) => (
             <li key={event.id}>
-              <time>{new Date(event.occurredAt).toLocaleString()}</time> — {event.detail}
+              <time>{event.occurredAt}</time> — {event.detail}
             </li>
           ))}
         </ol>
